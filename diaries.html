@@ -1,0 +1,72 @@
+<!-- insert your HTML code here -->
+<!-- don't forget to make two other HTML documents also -->
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs"></script>
+    <meta name="viewport" content="initial-scale=1" />
+    <title>
+      Weixuan Wang
+    </title>
+</head>
+<!--Reference: Tailwind CSS course notes-->
+<body>
+<!--Navigation bar-->
+    <nav x-data="{menuOpen: false}" class="bg-gray-500 text-white">
+        <div class="flex items-center justify-between p-4">
+            <a href="professional_site.html" class="font-bold text-xl">Dear Diary</a>
+            <!--Hamburger button-->
+            <button @click="menuOpen = !menuOpen" class="md:hidden text-2xl" aria-label="Toggle menu">☰</button>
+            <!--Link group, hidden by default-->
+            <div 
+                :class="menuOpen ? 'block' : 'hidden'" 
+                class="md:!block absolute 
+                    md:static top-16 left-0 right-0 
+                    bg-gray-500 md:bg-transparent 
+                    p-4 md:p-0 
+                    md:flex md:gap-6 md:items-center block">
+                <a href="professional_site.html" class="block md:inline py-2 md:py-0 hover:text-yellow-500">Home</a>
+                <a href="about_dear_diary.html" class="block md:inline py-2 md:py-0 hover:text-yellow-500">About</a>
+                <a href="diaries.html" class="block md:inline py-2 md:py-0 hover:text-yellow-500">Diaries</a>
+                <a href="index.html" class="block md:inline py-2 md:py-0 hover:text-yellow-500">Exit</a>
+                </div>
+            </div>
+        </nav>
+    <!--Main body-->
+    <main class="max-w-6xl mx-auto p-4">
+        <h1 class="text-3xl font-bold m-6">A record of life!</h1>
+        <p class="m-6 text-2xl font-semibold font-serif italic">
+        Record every prescious moment in life! 
+        </p>
+        <p class="m-6 font-base font-serif italic">
+        Every moment in life matters!
+        <br/> <br/>
+        Every step counts.
+        <br/> <br/>
+        Start by noting down important moments in life today.
+       </p>
+       <!--Image carousel-->
+       <!--Reference: Tailwind CSS course notes, Tailwind CSS documentation-->
+       <div id="diaries" x-data="{
+            current: 0, 
+            images: ['Images/Diary1a.png', 'Images/Diary2a.png', 'Images/Diary3a.png' ]
+       }"
+            class="relative">
+            <img :src="images[current]" class="w-full rounded-lg h-72 w-144 object-scale-down" />
+            <button 
+                @click="current = (current - 1 + images.length) % images.length"
+                class="absolute left-2 top-1/2 bg-gray/80 px-3 py-1 rounded text-3xl"
+            >
+                &lsaquo;
+            </button>
+            <button
+                @click="current = (current + 1) % images.length"
+                class="absolute right-2 top-1/2 bg-gray/80 px-3 py-1 rounded text-3xl"
+            >
+                &rsaquo;
+            </button>
+        </div>
+    </main>
+</body>
